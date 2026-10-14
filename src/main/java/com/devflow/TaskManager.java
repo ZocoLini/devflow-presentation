@@ -6,9 +6,11 @@ import java.util.Optional;
 
 public class TaskManager {
     private final List<Task> tasks = new ArrayList<>();
+    private int nextId = 1;
 
     public Task add(String title) {
-        int id = tasks.size() + 1;
+        int id = nextId;
+        nextId++;
         assert tasks.stream().noneMatch(task -> task.id() == id) : "Ya existe una tarea con id " + id;
 
         Task task = new Task(id, title, false);
