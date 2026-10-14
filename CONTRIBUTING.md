@@ -1,5 +1,27 @@
 # Cómo contribuir
 
+## Instalar los git hooks
+
+El repositorio incluye hooks en la carpeta `.githooks/`. Actívalos una sola vez después
+de clonar:
+
+```bash
+git config core.hooksPath .githooks
+```
+
+| Hook         | Cuándo se ejecuta       | Qué comprueba                    |
+|--------------|-------------------------|----------------------------------|
+| `pre-commit` | Antes de cada commit    | Formato, linter y tests          |
+
+Si alguna comprobación falla, el commit se cancela. Arregla el problema y vuelve a
+intentarlo.
+
+Para desactivarlos:
+
+```bash
+git config --unset core.hooksPath
+```
+
 ## Flujo de trabajo
 
 1. Crea una rama desde `master` actualizada:
