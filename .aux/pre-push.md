@@ -1,0 +1,15 @@
+## .githooks/pre-push
+
+```bash
+#!/usr/bin/env bash
+set -euo pipefail
+
+echo "==> [pre-push] Ejecutando los tests antes de subir"
+
+if ! ./scripts/test.sh > /dev/null; then
+    echo "[pre-push] Hay tests que fallan. Ejecuta ./scripts/test.sh para verlos."
+    exit 1
+fi
+
+echo "==> [pre-push] Todo correcto"
+```
