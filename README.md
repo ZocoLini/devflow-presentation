@@ -24,6 +24,9 @@ O con los scripts:
 ./scripts/run.sh    # compila y ejecuta la app (sin empaquetar)
 ./scripts/run.sh --debug      # igual, pero con las aserciones activadas (-ea)
 ./scripts/test.sh   # ejecuta los tests
+./scripts/format.sh           # formatea el código (Spotless)
+./scripts/format.sh --check   # solo comprueba el formato
+./scripts/lint.sh             # pasa el linter (PMD)
 ```
 
 ## Comandos
