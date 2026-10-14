@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+echo "==> [pre-commit] Comprobando el código antes del commit"
+
+if ! ./scripts/format.sh --check; then
+    echo "[pre-commit] Formato incorrecto. Ejecuta ./scripts/format.sh y vuelve a hacer el commit."
+    exit 1
+fi
+
+if ! ./scripts/lint.sh > /dev/null; then
+    echo "[pre-commit] El linter ha encontrado problemas. Ejecuta ./scripts/lint.sh para verlos."
+    exit 1
+fi
+
+echo "==> [pre-commit] Todo correcto"
