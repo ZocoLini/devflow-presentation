@@ -8,7 +8,10 @@ public class TaskManager {
     private final List<Task> tasks = new ArrayList<>();
 
     public Task add(String title) {
-        Task task = new Task(tasks.size() + 1, title, false);
+        int id = tasks.size() + 1;
+        assert tasks.stream().noneMatch(task -> task.id() == id) : "Ya existe una tarea con id " + id;
+
+        Task task = new Task(id, title, false);
         tasks.add(task);
         return task;
     }

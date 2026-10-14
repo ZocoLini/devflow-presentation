@@ -22,6 +22,7 @@ O con los scripts:
 
 ```bash
 ./scripts/run.sh    # compila y ejecuta la app (sin empaquetar)
+./scripts/run.sh --debug      # igual, pero con las aserciones activadas (-ea)
 ./scripts/test.sh   # ejecuta los tests
 ```
 
