@@ -47,6 +47,16 @@ class TaskManagerTest {
     }
 
     @Test
+    void addAfterDeleteDoesNotReuseIds() {
+        manager.add("Comprar pan");
+        Task second = manager.add("Estudiar Git");
+        manager.delete(1);
+        Task third = manager.add("Preparar slides");
+
+        assertNotEquals(second.id(), third.id());
+    }
+
+    @Test
     void clearRemovesAllTasks() {
         manager.add("Una");
         manager.add("Otra");
