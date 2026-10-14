@@ -1,5 +1,7 @@
 package com.devflow;
 
+import java.nio.charset.StandardCharsets;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class App {
@@ -18,7 +20,7 @@ public class App {
 
     public static void main(String[] args) {
         System.out.println("=== Task CLI ===  (escribe 'help' para ver los comandos)");
-        new App().run(new Scanner(System.in));
+        new App().run(new Scanner(System.in, StandardCharsets.UTF_8));
     }
 
     void run(Scanner in) {
@@ -31,7 +33,7 @@ public class App {
 
             String line = in.nextLine().strip();
 
-            if (line.equals("exit")) {
+            if ("exit".equals(line)) {
                 System.out.println("¡Hasta luego!");
                 return;
             }
@@ -44,7 +46,7 @@ public class App {
 
     String handle(String line) {
         String[] parts = line.split("\\s+", 2);
-        String command = parts[0].toLowerCase();
+        String command = parts[0].toLowerCase(Locale.ROOT);
         String argument = parts.length > 1 ? parts[1] : "";
 
         try {
@@ -82,7 +84,7 @@ public class App {
         try {
             return Integer.parseInt(argument.strip());
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("'" + argument + "' no es un id válido");
+            throw new IllegalArgumentException("'" + argument + "' no es un id válido", e);
         }
     }
 }
