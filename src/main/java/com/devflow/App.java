@@ -25,7 +25,7 @@ public class App {
         while (true) {
             System.out.print("> ");
 
-            if (! in.hasNextLine()) {
+            if (!in.hasNextLine()) {
                 return;
             }
 
