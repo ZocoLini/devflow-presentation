@@ -11,9 +11,10 @@ git config core.hooksPath .githooks
 
 | Hook         | Cuándo se ejecuta       | Qué comprueba                    |
 |--------------|-------------------------|----------------------------------|
-| `pre-commit` | Antes de cada commit    | Formato, linter y tests          |
+| `pre-commit` | Antes de cada commit    | Formato y linter                 |
+| `pre-push`   | Antes de cada push      | Tests                            |
 
-Si alguna comprobación falla, el commit se cancela. Arregla el problema y vuelve a
+Si alguna comprobación falla, el commit o el push se cancela. Arregla el problema y vuelve a
 intentarlo.
 
 Para desactivarlos:
