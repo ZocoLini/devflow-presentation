@@ -12,6 +12,7 @@ git config core.hooksPath .githooks
 | Hook         | Cuándo se ejecuta       | Qué comprueba                    |
 |--------------|-------------------------|----------------------------------|
 | `pre-commit` | Antes de cada commit    | Formato y linter                 |
+| `commit-msg` | Al escribir el mensaje  | Formato Conventional Commits     |
 | `pre-push`   | Antes de cada push      | Tests                            |
 
 Si alguna comprobación falla, el commit o el push se cancela. Arregla el problema y vuelve a
