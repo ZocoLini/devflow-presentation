@@ -19,7 +19,7 @@ public class App {
     private final TaskManager manager = new TaskManager();
 
     public static void main(String[] args) {
-        System.out.println("=== Task CLI ===  (escribe 'help' para ver los comandos)");
+        System.out.println("------- Chando-TODO -------");
         new App().run(new Scanner(System.in, StandardCharsets.UTF_8));
     }
 
