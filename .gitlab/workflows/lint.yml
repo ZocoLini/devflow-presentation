@@ -1,0 +1,5 @@
+lint:
+  extends: .java-image
+  stage: check
+  script:
+    - ./scripts/lint.sh

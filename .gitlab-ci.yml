@@ -1,0 +1,14 @@
+stages:
+  - check
+  - test
+
+.java-image:
+  image: maven:3-eclipse-temurin-21
+  variables:
+    MAVEN_OPTS: "-Dmaven.repo.local=$CI_PROJECT_DIR/.m2/repository"
+  cache:
+    paths:
+      - .m2/repository
+
+include:
+  - local: .gitlab/workflows/**.yml
