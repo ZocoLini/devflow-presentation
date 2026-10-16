@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-TYPES="feat|fix|docs|test|refactor|chore"
+TYPES="feat|fix|docs|test|refactor|chore|ci"
 PATTERN="^($TYPES)(\([a-z0-9-]+\))?: .+"
 
 MESSAGE=$(sed -e '/^#/d' -e 'q' "$1")

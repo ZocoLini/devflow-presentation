@@ -1,0 +1,13 @@
+name: Formato
+
+on:
+  workflow_call:
+
+jobs:
+  format:
+    name: Formato
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: ./.github/actions/setup-java
+      - run: ./scripts/format.sh --check

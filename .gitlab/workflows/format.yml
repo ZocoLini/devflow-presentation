@@ -1,0 +1,5 @@
+format:
+  extends: .java-image
+  stage: check
+  script:
+    - ./scripts/format.sh --check
