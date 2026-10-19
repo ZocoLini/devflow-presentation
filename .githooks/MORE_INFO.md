@@ -97,3 +97,51 @@ git restore --staged src/main/java/com/devflow/Config.java
 rm src/main/java/com/devflow/Config.java
 mv .githooks/pre-commit.bak .githooks/pre-commit
 ```
+
+## Ejemplo: el framework pre-commit
+
+[`examples/pre-commit-config.yaml`](examples/pre-commit-config.yaml) hace lo mismo que
+nuestros hooks, más gitleaks, con el framework **pre-commit**:
+
+- Reutiliza los mismos scripts de `scripts/` y `.githooks/commit-msg`.
+- `files: \.java$`: el hook solo se ejecuta si el commit toca archivos Java; si no, sale
+  `Skipped`.
+- Los hooks de otros (gitleaks) se descargan y se fijan a una versión con `rev`, sin copiar
+  su código. `pre-commit autoupdate` los actualiza.
+- `default_stages: [pre-commit]`: sin esto, los hooks sin `stages` se ejecutan también en
+  `commit-msg` y `pre-push`.
+- `pass_filenames: false`: por defecto pre-commit pasa los archivos cambiados como argumentos,
+  y nuestros scripts no los esperan.
+- No convive con `core.hooksPath`: `pre-commit install` se niega a instalar si está puesto.
+- El hook puede estar escrito en cualquier lenguaje (Python, Rust, Java...): Git solo mira el
+  código de salida. Si la regla es solo una expresión regular, `language: pygrep` no necesita
+  script.
+
+Para probarlo:
+
+```bash
+git config --unset core.hooksPath
+pip install pre-commit
+cp .githooks/examples/pre-commit-config.yaml .pre-commit-config.yaml
+pre-commit install
+pre-commit run --all-files
+```
+
+Si no encuentra el comando `pre-commit`, usa `python3 -m pre_commit` en su lugar.
+
+Resultado:
+
+```
+Formato..................................................................Passed
+Linter...................................................................Passed
+Consola solo en App......................................................Passed
+Detect hardcoded secrets.................................................Passed
+```
+
+Para dejarlo todo como estaba:
+
+```bash
+pre-commit uninstall
+rm .pre-commit-config.yaml
+git config core.hooksPath .githooks
+```
