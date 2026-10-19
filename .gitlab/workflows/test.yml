@@ -1,5 +1,5 @@
 test:
-  extends: .java-image
+  extends: [.java-image, .solo-si-cambia-codigo]
   stage: test
   needs: [format, lint]
   script:

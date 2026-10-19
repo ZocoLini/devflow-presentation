@@ -10,5 +10,20 @@ stages:
     paths:
       - .m2/repository
 
+.codigo: &codigo
+  - src/**/*
+  - pom.xml
+  - scripts/**/*
+  - .config/**/*
+  - .gitlab-ci.yml
+  - .gitlab/**/*
+
+.solo-si-cambia-codigo:
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+      changes: *codigo
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+      changes: *codigo
+
 include:
   - local: .gitlab/workflows/**.yml
