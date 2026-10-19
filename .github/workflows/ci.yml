@@ -14,8 +14,11 @@ jobs:
   lint:
     uses: ./.github/workflows/lint.yml
 
+  arch:
+    uses: ./.github/workflows/arch.yml
+
   test:
-    needs: [format, lint]
+    needs: [format, lint, arch]
     strategy:
       fail-fast: false
       matrix:

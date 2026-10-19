@@ -13,4 +13,9 @@ if ! ./scripts/lint.sh > /dev/null; then
     exit 1
 fi
 
+if ! ./scripts/arch.sh; then
+    echo "[pre-commit] La comprobación de arquitectura ha fallado."
+    exit 1
+fi
+
 echo "==> [pre-commit] Todo correcto"
