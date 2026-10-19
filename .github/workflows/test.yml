@@ -6,6 +6,9 @@ on:
       os:
         type: string
         default: ubuntu-latest
+      java:
+        type: string
+        default: '21'
 
 jobs:
   test:
@@ -17,9 +20,11 @@ jobs:
     steps:
       - uses: actions/checkout@v7
       - uses: ./.github/actions/setup-java
+        with:
+          java-version: ${{ inputs.java }}
       - run: ./scripts/test.sh
       - if: failure()
         uses: actions/upload-artifact@v7
         with:
-          name: test-reports-${{ inputs.os }}
+          name: test-reports-${{ inputs.os }}-java${{ inputs.java }}
           path: target/surefire-reports/
